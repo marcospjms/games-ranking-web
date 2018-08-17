@@ -14,6 +14,6 @@
   <div class="input">
     <span>Nome</span><input type="text" [(ngModel)]="player.name" (blur)="changed(player)" minlength="2"/>
   </div>
-  <i class="fa fa-trash btn-remove" (click)="delete(player)" title="Remover"></i>
+  <i class="fa fa-trash btn-remove" (click)="delete(player)" title="Remover" *ngIf="player.id != undefined"></i>
 
 </div>
