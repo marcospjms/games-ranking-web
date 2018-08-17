@@ -1,5 +1,5 @@
 <div class="content">
-  <h2>Scoreboards</h2>
+  <h2>Scoreboard - {{ scoreboard.name }}</h2>
 </div>
 
 <!--<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar scoreboard</span>-->
@@ -16,8 +16,8 @@
   </div>
 
 </div>
-<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar score</span>
-<div class="content">
+<span (click)="add()" class="btn-add" *ngIf="!choosingPlayer"><i class="fa fa-plus-circle"></i> Adicionar score</span>
+<div class="content" *ngIf="!choosingPlayer">
   <table class="scoreboard">
     <thead>
       <tr>

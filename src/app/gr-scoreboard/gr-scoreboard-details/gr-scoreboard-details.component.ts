@@ -15,6 +15,7 @@ export class GrScoreboardDetailsComponent implements OnInit {
 
   scoreboard: Scoreboard = new Scoreboard();
   loading = false;
+  choosingPlayer = false;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
