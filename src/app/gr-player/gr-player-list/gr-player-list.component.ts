@@ -29,9 +29,13 @@ export class GrPlayerListComponent implements OnInit {
   changed(player: Player) {
     if (player.name !== undefined && player.name.trim() !== '') {
       if (!player.id) {
-        this.playerService.save(player).subscribe(newPlayer => player.id = newPlayer.id);
+        this.playerService.save(player).subscribe(newPlayer => player.id = newPlayer.id, error => {
+          alert('Erro ao tentar realizar essa operação');
+        });
       } else {
-        this.playerService.update(player).subscribe();
+        this.playerService.update(player).subscribe(() => {}, error => {
+          alert('Erro ao tentar realizar essa operação');
+        });
       }
 
     }
@@ -43,6 +47,8 @@ export class GrPlayerListComponent implements OnInit {
     }
     this.playerService.delete(player).subscribe(result => {
       this.players.splice(index, 1);
+    }, error => {
+      alert('Erro ao tentar realizar essa operação');
     });
   }
 
