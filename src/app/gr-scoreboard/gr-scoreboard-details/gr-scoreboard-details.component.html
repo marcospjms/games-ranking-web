@@ -1,0 +1,43 @@
+<div class="content">
+  <h2>Scoreboards</h2>
+</div>
+
+<!--<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar scoreboard</span>-->
+
+<div class="content" *ngIf="loading">
+  Carregando...
+</div>
+
+<div class="content row">
+
+  <span class="id"># {{ scoreboard?.id }}</span>
+  <div class="input">
+    <span>Nome</span><input type="text" [(ngModel)]="scoreboard.name" (ngModelChange)="changed(scoreboard)" minlength="2"/>
+  </div>
+
+</div>
+<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar score</span>
+<div class="content">
+  <table class="scoreboard">
+    <thead>
+      <tr>
+        <th>Jogador</th>
+        <th>Vitorias</th>
+        <th>Partidas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Jogador 1
+        </td>
+        <td>
+          <i class="fa fa-plus-circle"></i> <i class="fa fa-minus"></i> 30
+        </td>
+        <td>
+          <i class="fa fa-plus-circle"></i> <i class="fa fa-minus"></i> 40
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -31,4 +31,8 @@ export class ScoreboardService {
   public listAll(): Observable<Scoreboard[]> {
     return this.httpClient.get<Scoreboard[]>(this.scoreboardUrl);
   }
+
+  public get(id: number): Observable<Scoreboard> {
+    return this.httpClient.get<Scoreboard>(`${this.scoreboardUrl}/${id}`);
+  }
 }
