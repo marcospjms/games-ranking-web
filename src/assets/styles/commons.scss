@@ -30,6 +30,7 @@
 .row {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   * {
     margin-right: 20px;
   }
@@ -38,4 +39,5 @@
 .btn-add, .btn-info, .btn-remove {
   cursor: pointer;
   color: black;
+  margin: 10px;
 }
