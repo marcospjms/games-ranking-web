@@ -35,6 +35,7 @@ export class GrRankingDetailsComponent implements OnInit {
       this.rankingService.get(id).subscribe(ranking => {
         this.ranking = ranking;
         this.loading = false;
+        this.sortEntries();
       }, error => {
         this.backToList();
       });
