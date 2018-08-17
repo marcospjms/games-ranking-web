@@ -5,6 +5,8 @@ import {
 } from '@angular/router';
 import { Scoreboard } from '../shared/scoreboard.model';
 import { ScoreboardService } from '../shared/scoreboard.service';
+import {Player} from '../../gr-player/shared/player.model';
+import {PlayerService} from '../../gr-player/shared/player.service';
 
 @Component({
   selector: 'app-gr-scoreboard-details',
@@ -16,10 +18,12 @@ export class GrScoreboardDetailsComponent implements OnInit {
   scoreboard: Scoreboard = new Scoreboard();
   loading = false;
   choosingPlayer = false;
+  players: Player[] = [];
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private scoreboardService: ScoreboardService) { }
+              private scoreboardService: ScoreboardService,
+              private playerService: PlayerService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -34,6 +38,8 @@ export class GrScoreboardDetailsComponent implements OnInit {
       }, error => {
         this.backToList();
       });
+
+      this.playerService.listAll().subscribe(result => this.players = result);
     });
   }
 
@@ -50,6 +56,11 @@ export class GrScoreboardDetailsComponent implements OnInit {
       }
 
     }
+  }
+
+  createScoreEntry(selectedPlayer: Player) {
+    this.choosingPlayer = false;
+    this.scoreboardService.createScoreEentry(this.scoreboard, selectedPlayer).subscribe(scoreboard => this.scoreboard = scoreboard);
   }
 
 }

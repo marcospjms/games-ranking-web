@@ -17,3 +17,10 @@ table.scoreboard {
     }
   }
 }
+
+.choice {
+  cursor: pointer;
+  &:hover {
+    background-color: #a3e2a3;
+  }
+}

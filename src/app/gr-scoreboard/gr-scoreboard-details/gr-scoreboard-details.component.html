@@ -16,9 +16,10 @@
   </div>
 
 </div>
-<span (click)="add()" class="btn-add" *ngIf="!choosingPlayer"><i class="fa fa-plus-circle"></i> Adicionar score</span>
+<span (click)="choosingPlayer = true" class="btn-add" *ngIf="!choosingPlayer"><i class="fa fa-plus-circle"></i> Adicionar jogador</span>
+<span (click)="choosingPlayer = false" class="btn-add" *ngIf="choosingPlayer"><i class="fa fa-caret-left"></i> Cancelar</span>
 <div class="content" *ngIf="!choosingPlayer">
-  <table class="scoreboard">
+  <table class="scoreboard" *ngIf="scoreboard.scoreEntries != undefined && scoreboard.scoreEntries.length > 0">
     <thead>
       <tr>
         <th>Jogador</th>
@@ -27,17 +28,28 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let scoreEntry of scoreboard.scoreEntries">
         <td>
-          Jogador 1
+          {{ scoreEntry.player?.name }}
         </td>
         <td>
-          <i class="fa fa-plus-circle"></i> <i class="fa fa-minus"></i> 30
+          <i class="fa fa-plus-circle"></i> <i class="fa fa-minus"></i> {{scoreEntry.victories}}
         </td>
         <td>
-          <i class="fa fa-plus-circle"></i> <i class="fa fa-minus"></i> 40
+          <i class="fa fa-plus-circle"></i> <i class="fa fa-minus"></i> {{ scoreEntry.matches}}
         </td>
       </tr>
     </tbody>
   </table>
+  <span *ngIf="scoreboard.scoreEntries == undefined || scoreboard.scoreEntries.length == 0">
+    Sem jogadores cadastrados
+  </span>
+</div>
+
+<div class="content" *ngIf="choosingPlayer">
+  <h3>Selecionar jogador</h3>
+</div>
+
+<div class="content choice" [hidden]="!choosingPlayer" *ngFor="let player of players" (click)="createScoreEntry(player)">
+  <span>{{ player.name }}</span>
 </div>
