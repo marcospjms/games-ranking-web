@@ -1,3 +1,18 @@
-<p>
-  gr-player works!
-</p>
+<div class="content">
+  <h2>Jogadores</h2>
+</div>
+
+<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar jogadores</span>
+
+<div class="content" *ngIf="loading">
+  Carregando...
+</div>
+
+<div class="content row" *ngFor="let player of players">
+
+  <span class="id"># {{ player.id }}</span>
+  <div class="input">
+    <span>Nome</span><input type="text" [(ngModel)]="player.name" (ngModelChange)="changed(player)" minlength="2"/>
+  </div>
+
+</div>

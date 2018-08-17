@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { GrScoreboardModule } from './gr-scoreboard/gr-scoreboard.module';
 import { GrPlayerModule } from './gr-player/gr-player.module';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { GrPlayerModule } from './gr-player/gr-player.module';
         path: 'jogadores',
         loadChildren: () => GrPlayerModule
       }
-    ])
+    ]),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

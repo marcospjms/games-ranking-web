@@ -4,7 +4,7 @@
 .main-container {
   margin: auto;
   width: $main-container-width;
-  background-color: white;
+  //background-color: white;
 }
 
 nav {
@@ -27,5 +27,14 @@ nav {
         }
       }
     }
+  }
+}
+
+@media (max-width: $main-container-width) {
+  .main-container {
+    width: auto;
+  }
+  nav {
+    padding: inherit;
   }
 }

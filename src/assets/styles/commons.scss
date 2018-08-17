@@ -1,0 +1,35 @@
+.content {
+  margin: 10px 0;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #d7e4de;
+
+  .id {
+    padding: 15px;
+  }
+
+  .input {
+    display: flex;
+    flex-direction: column;
+    span {
+      padding: 5px;
+    }
+    input {
+      padding: 15px;
+      width: 200px;
+    }
+  }
+
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  * {
+    margin-right: 20px;
+  }
+}
+
+.btn-add {
+  cursor: pointer;
+}
