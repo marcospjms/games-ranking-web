@@ -3,26 +3,26 @@ import {
   ActivatedRoute,
   Router
 } from '@angular/router';
-import { Scoreboard } from '../shared/scoreboard.model';
-import { ScoreboardService } from '../shared/scoreboard.service';
+import { Ranking, RankingEntry } from '../shared/ranking.model';
+import { RankingService } from '../shared/ranking.service';
 import {Player} from '../../gr-player/shared/player.model';
 import {PlayerService} from '../../gr-player/shared/player.service';
 
 @Component({
   selector: 'app-gr-scoreboard-details',
-  templateUrl: './gr-scoreboard-details.component.html',
-  styleUrls: ['./gr-scoreboard-details.component.scss']
+  templateUrl: './gr-raking-details.component.html',
+  styleUrls: ['./gr-raking-details.component.scss']
 })
-export class GrScoreboardDetailsComponent implements OnInit {
+export class GrRankingDetailsComponent implements OnInit {
 
-  scoreboard: Scoreboard = new Scoreboard();
+  scoreboard: Ranking = new Ranking();
   loading = false;
   choosingPlayer = false;
   players: Player[] = [];
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private scoreboardService: ScoreboardService,
+              private scoreboardService: RankingService,
               private playerService: PlayerService) { }
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class GrScoreboardDetailsComponent implements OnInit {
     this.router.navigateByUrl(this.router.createUrlTree(['.', 'scoreboards']));
   }
 
-  changed(scoreb: Scoreboard) {
+  changed(scoreb: Ranking) {
     if (scoreb.name !== undefined && scoreb.name.trim() !== '') {
       if (!scoreb.id) {
         this.scoreboardService.save(scoreb).subscribe(newPlayer => scoreb.id = newPlayer.id);
@@ -60,7 +60,23 @@ export class GrScoreboardDetailsComponent implements OnInit {
 
   createScoreEntry(selectedPlayer: Player) {
     this.choosingPlayer = false;
-    this.scoreboardService.createScoreEentry(this.scoreboard, selectedPlayer).subscribe(scoreboard => this.scoreboard = scoreboard);
+    this.scoreboardService.createScoreEntry(this.scoreboard, selectedPlayer).subscribe(scoreboard => this.scoreboard = scoreboard);
+  }
+
+  public incrementVictories(scoreEntry: RankingEntry, i: number) {
+    this.scoreboardService.incrementVictories(this.scoreboard, scoreEntry.player);
+  }
+
+  public decreaseVictories(scoreEntry: RankingEntry, i: number) {
+    this.scoreboardService.decreaseVictories(this.scoreboard, scoreEntry.player);
+  }
+
+  public incrementMatches(scoreEntry: RankingEntry, i: number) {
+    this.scoreboardService.incrementMatches(this.scoreboard, scoreEntry.player);
+  }
+
+  public decreaseMatches(scoreEntry: RankingEntry, i: number) {
+    this.scoreboardService.decreaseMatches(this.scoreboard, scoreEntry.player);
   }
 
 }

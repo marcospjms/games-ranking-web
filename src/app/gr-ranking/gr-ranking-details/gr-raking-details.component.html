@@ -19,7 +19,7 @@
 <span (click)="choosingPlayer = true" class="btn-add" *ngIf="!choosingPlayer"><i class="fa fa-plus-circle"></i> Adicionar jogador</span>
 <span (click)="choosingPlayer = false" class="btn-add" *ngIf="choosingPlayer"><i class="fa fa-caret-left"></i> Cancelar</span>
 <div class="content" *ngIf="!choosingPlayer">
-  <table class="scoreboard" *ngIf="scoreboard.scoreEntries != undefined && scoreboard.scoreEntries.length > 0">
+  <table class="scoreboard" *ngIf="scoreboard.rankingEntries != undefined && scoreboard.rankingEntries.length > 0">
     <thead>
       <tr>
         <th>Jogador</th>
@@ -28,20 +28,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let scoreEntry of scoreboard.scoreEntries">
+      <tr *ngFor="let scoreEntry of scoreboard.rankingEntries; let i = index">
         <td>
           {{ scoreEntry.player?.name }}
         </td>
         <td>
-          <i class="fa fa-plus-circle"></i> <i class="fa fa-minus"></i> {{scoreEntry.victories}}
+          <i class="fa fa-plus-circle" (click)="incrementVictories(scoreEntry, i)"></i>
+          <i class="fa fa-minus" (click)="decreaseVictories(scoreEntry, i)"></i>
+          {{scoreEntry.victories}}
         </td>
         <td>
-          <i class="fa fa-plus-circle"></i> <i class="fa fa-minus"></i> {{ scoreEntry.matches}}
+          <i class="fa fa-plus-circle" (click)="incrementMatches(scoreEntry, i)"></i>
+          <i class="fa fa-minus" (click)="decreaseMatches(scoreEntry, i)"></i>
+          {{ scoreEntry.matches}}
         </td>
       </tr>
     </tbody>
   </table>
-  <span *ngIf="scoreboard.scoreEntries == undefined || scoreboard.scoreEntries.length == 0">
+  <span *ngIf="scoreboard.rankingEntries == undefined || scoreboard.rankingEntries.length == 0">
     Sem jogadores cadastrados
   </span>
 </div>

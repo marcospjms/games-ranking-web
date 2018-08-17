@@ -12,7 +12,7 @@
 
   <span class="id"># {{ player.id }}</span>
   <div class="input">
-    <span>Nome</span><input type="text" [(ngModel)]="player.name" (ngModelChange)="changed(player)" minlength="2"/>
+    <span>Nome</span><input type="text" [(ngModel)]="player.name" (blur)="changed(player)" minlength="2"/>
   </div>
   <i class="fa fa-trash btn-remove" (click)="delete(player)" title="Remover"></i>
 

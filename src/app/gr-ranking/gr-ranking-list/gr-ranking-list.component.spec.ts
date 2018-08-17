@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GrPlayerListComponent } from './gr-player-list.component';
+import { GrRakingListComponent } from './gr-ranking-list.component';
 
 describe('GrRakingListComponent', () => {
-  let component: GrPlayerListComponent;
-  let fixture: ComponentFixture<GrPlayerListComponent>;
+  let component: GrRakingListComponent;
+  let fixture: ComponentFixture<GrRakingListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GrPlayerListComponent ]
+      declarations: [ GrRakingListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GrPlayerListComponent);
+    fixture = TestBed.createComponent(GrRakingListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

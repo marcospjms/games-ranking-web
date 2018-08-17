@@ -1,12 +1,12 @@
 import { Player } from '../../gr-player/shared/player.model';
 
-export class Scoreboard {
+export class Ranking {
   id: number;
   name: string;
-  scoreEntries: ScoreEntry[];
+  rankingEntries: RankingEntry[];
 }
 
-export class ScoreEntry {
+export class RankingEntry {
   id: string;
   player: Player;
   victories: number;

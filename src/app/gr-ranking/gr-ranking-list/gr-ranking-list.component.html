@@ -12,7 +12,7 @@
 
   <span class="id"># {{ scoreboard.id }}</span>
   <div class="input">
-    <span>Nome</span><input type="text" [(ngModel)]="scoreboard.name" (ngModelChange)="changed(scoreboard)" minlength="2"/>
+    <span>Nome</span><input type="text" [(ngModel)]="scoreboard.name" (blur)="changed(scoreboard)" minlength="2"/>
   </div>
   <a [routerLink]="['..', scoreboard.id, 'detalhes']" ><i class="fa fa-search btn-info" title="Visualizar score"></i></a>
   <i class="fa fa-trash btn-remove" (click)="delete(scoreboard)" title="Remover"></i>

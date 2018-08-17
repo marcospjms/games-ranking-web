@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { GrScoreboardModule } from './gr-scoreboard/gr-scoreboard.module';
+import { GrRankingModule } from './gr-ranking/gr-ranking.module';
 import { GrPlayerModule } from './gr-player/gr-player.module';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
       },
       {
         path: 'scoreboards',
-        loadChildren: () => GrScoreboardModule
+        loadChildren: () => GrRankingModule
       },
       {
         path: 'jogadores',

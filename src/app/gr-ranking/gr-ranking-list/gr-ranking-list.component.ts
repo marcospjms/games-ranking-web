@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Scoreboard } from '../shared/scoreboard.model';
-import { ScoreboardService } from '../shared/scoreboard.service';
+import { Ranking } from '../shared/ranking.model';
+import { RankingService } from '../shared/ranking.service';
 
 
 @Component({
-  selector: 'app-gr-scoreboard-list',
-  templateUrl: './gr-player-list.component.html',
-  styleUrls: ['./gr-player-list.component.scss']
+  selector: 'app-gr-raking-list',
+  templateUrl: './gr-ranking-list.component.html',
+  styleUrls: ['./gr-ranking-list.component.scss']
 })
-export class GrScoreboardListComponent implements OnInit {
+export class GrRakingListComponent implements OnInit {
 
-  scoreboards: Scoreboard[];
+  scoreboards: Ranking[];
   loading = false;
 
-  constructor(private scoreboardService: ScoreboardService) { }
+  constructor(private scoreboardService: RankingService) { }
 
   ngOnInit() {
     this.loading = true;
@@ -24,10 +24,10 @@ export class GrScoreboardListComponent implements OnInit {
   }
 
   add() {
-    this.scoreboards.push(new Scoreboard());
+    this.scoreboards.push(new Ranking());
   }
 
-  changed(scoreb: Scoreboard) {
+  changed(scoreb: Ranking) {
     if (scoreb.name !== undefined && scoreb.name.trim() !== '') {
       if (!scoreb.id) {
         this.scoreboardService.save(scoreb).subscribe(newPlayer => scoreb.id = newPlayer.id);
@@ -38,7 +38,7 @@ export class GrScoreboardListComponent implements OnInit {
     }
   }
 
-  delete(scoreboard: Scoreboard, index: number) {
+  delete(scoreboard: Ranking, index: number) {
     if (!confirm('Tem certeza que deseja deletar?')) {
       return;
     }

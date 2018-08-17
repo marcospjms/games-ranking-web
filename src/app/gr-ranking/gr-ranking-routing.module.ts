@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GrScoreboardListComponent } from './gr-scoreboard-list/gr-scoreboard-list.component';
-import { GrScoreboardDetailsComponent } from './gr-scoreboard-details/gr-scoreboard-details.component';
+import { GrRakingListComponent } from './gr-ranking-list/gr-ranking-list.component';
+import { GrRankingDetailsComponent } from './gr-ranking-details/gr-raking-details.component';
 
 const routes: Routes = [
   {
@@ -13,11 +13,11 @@ const routes: Routes = [
       },
       {
         path: 'todos',
-        component: GrScoreboardListComponent
+        component: GrRakingListComponent
       },
       {
         path: ':id/detalhes',
-        component: GrScoreboardDetailsComponent
+        component: GrRankingDetailsComponent
       }
     ]
   }
@@ -27,4 +27,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class GrScoreboardRoutingModule { }
+export class GrRankingRoutingModule { }
