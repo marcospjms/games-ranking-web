@@ -40,6 +40,10 @@ export class RankingService {
     return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${ranking.id}/createRankingEntry/${player.id}`, ranking);
   }
 
+  public deleteRankingEntry(ranking: Ranking, player: Player): Observable<Ranking> {
+    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${ranking.id}/deleteRankingEntry/${player.id}`, ranking);
+  }
+
   public incrementVictories(ranking: Ranking, player: Player): Observable<Ranking> {
     return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${ranking.id}/incrementVictories/${player.id}`, ranking);
   }

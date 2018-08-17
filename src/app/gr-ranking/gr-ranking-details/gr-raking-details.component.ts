@@ -63,6 +63,10 @@ export class GrRankingDetailsComponent implements OnInit {
     this.rankingService.createRankingEntry(this.ranking, selectedPlayer).subscribe(ranking => this.ranking = ranking);
   }
 
+  deleteRankingEntry(rankingEntry: RankingEntry, i: number) {
+    this.rankingService.deleteRankingEntry(this.ranking, rankingEntry.player).subscribe(ranking => this.ranking = ranking);
+  }
+
   public incrementVictories(rankingEntry: RankingEntry, i: number) {
     this.rankingService.incrementVictories(this.ranking, rankingEntry.player).subscribe(ranking => this.ranking = ranking);;
   }

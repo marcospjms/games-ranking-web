@@ -30,6 +30,7 @@
     <tbody>
       <tr *ngFor="let rankingEntry of ranking.rankingEntries; let i = index">
         <td>
+          <i class="fa fa-minus" (click)="deleteRankingEntry(rankingEntry, i)"></i>
           {{ rankingEntry.player?.name }}
         </td>
         <td>
@@ -58,6 +59,6 @@
   <span>{{ player.name }}</span>
 </div>
 
-<div class="content" [hidden]="!choosingPlayer && players.length === 0">
+<div class="content" *ngIf="choosingPlayer && players.length === 0">
   Sem jogadores
 </div>
