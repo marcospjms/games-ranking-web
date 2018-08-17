@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GrPlayerComponent } from './gr-player.component';
+import { GrPlayerListComponent } from './gr-player-list/gr-player-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: GrPlayerComponent
+    component: GrPlayerListComponent
   }
 ];
 

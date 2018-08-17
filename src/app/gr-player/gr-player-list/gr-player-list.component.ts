@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Player } from './shared/player.model';
-import { PlayerService } from './shared/player.service';
+import { Player } from '../shared/player.model';
+import { PlayerService } from '../shared/player.service';
 
 @Component({
   selector: 'app-gr-player',
-  templateUrl: './gr-player.component.html',
-  styleUrls: ['./gr-player.component.scss']
+  templateUrl: './gr-player-list.component.html',
+  styleUrls: ['./gr-player-list.component.scss']
 })
-export class GrPlayerComponent implements OnInit {
+export class GrPlayerListComponent implements OnInit {
 
   players: Player[];
   loading = false;
@@ -15,8 +15,7 @@ export class GrPlayerComponent implements OnInit {
   constructor(private playerService: PlayerService) { }
 
   ngOnInit() {
-    this.loading = true
-    console.log(this.playerService)
+    this.loading = true;
     this.playerService.listAll().subscribe(result => {
       this.players = result;
       this.loading = false;
@@ -36,6 +35,15 @@ export class GrPlayerComponent implements OnInit {
       }
 
     }
+  }
+
+  delete(player: Player, index: number) {
+    if (!confirm('Tem certeza que deseja deletar?')) {
+      return;
+    }
+    this.playerService.delete(player).subscribe(result => {
+      this.players.splice(index, 1);
+    });
   }
 
 }

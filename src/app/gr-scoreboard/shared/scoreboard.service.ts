@@ -1,9 +1,34 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { Scoreboard } from './scoreboard.model';
+import { Observable } from 'rxjs/index';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScoreboardService {
 
-  constructor() { }
+  scoreboardUrl: string;
+
+  constructor(private httpClient: HttpClient) {
+    this.scoreboardUrl = environment.apiUrl + 'scoreboards';
+  }
+
+  public save(scoreboard: Scoreboard): Observable<Scoreboard> {
+    return this.httpClient.post<Scoreboard>(this.scoreboardUrl, scoreboard);
+  }
+
+  public update(scoreboard: Scoreboard): Observable<Scoreboard> {
+    return this.httpClient.put<Scoreboard>(this.scoreboardUrl, scoreboard);
+  }
+
+  public delete(scoreboard: Scoreboard): Observable<boolean> {
+    return this.httpClient.delete<boolean>(`${this.scoreboardUrl}/${scoreboard.id}`);
+  }
+
+
+  public listAll(): Observable<Scoreboard[]> {
+    return this.httpClient.get<Scoreboard[]>(this.scoreboardUrl);
+  }
 }

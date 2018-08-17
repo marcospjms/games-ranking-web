@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { GrPlayerRoutingModule } from './gr-player-routing.module';
-import { GrPlayerComponent } from './gr-player.component';
+import { GrPlayerListComponent } from './gr-player-list/gr-player-list.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -11,6 +11,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     GrPlayerRoutingModule
   ],
-  declarations: [GrPlayerComponent]
+  declarations: [GrPlayerListComponent]
 })
 export class GrPlayerModule { }

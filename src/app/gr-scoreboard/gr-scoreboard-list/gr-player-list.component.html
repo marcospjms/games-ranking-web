@@ -1,0 +1,19 @@
+<div class="content">
+  <h2>Scoreboards</h2>
+</div>
+
+<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar scoreboard</span>
+
+<div class="content" *ngIf="loading">
+  Carregando...
+</div>
+
+<div class="content row" *ngFor="let scoreboard of scoreboards">
+
+  <span class="id"># {{ scoreboard.id }}</span>
+  <div class="input">
+    <span>Nome</span><input type="text" [(ngModel)]="scoreboard.name" (ngModelChange)="changed(scoreboard)" minlength="2"/>
+  </div>
+  <i class="fa fa-trash btn-remove" (click)="delete(scoreboard)"></i>
+
+</div>

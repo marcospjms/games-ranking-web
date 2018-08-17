@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GrScoreboardComponent } from './gr-scoreboard.component';
+import { GrScoreboardListComponent } from './gr-scoreboard-list/gr-scoreboard-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: GrScoreboardComponent
+    component: GrScoreboardListComponent
   }
 ];
 

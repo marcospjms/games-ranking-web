@@ -23,6 +23,11 @@ export class PlayerService {
     return this.httpClient.put<Player>(this.playerUrl, player);
   }
 
+  public delete(player: Player): Observable<boolean> {
+    return this.httpClient.delete<boolean>(`${this.playerUrl}/${player.id}`);
+  }
+
+
   public listAll(): Observable<Player[]> {
     return this.httpClient.get<Player[]>(this.playerUrl);
   }
