@@ -1,13 +1,13 @@
 import { GrRankingModule } from './gr-ranking.module';
 
 describe('GrRankingModule', () => {
-  let grScoreboardModule: GrRankingModule;
+  let grRankingModule: GrRankingModule;
 
   beforeEach(() => {
-    grScoreboardModule = new GrRankingModule();
+    grRankingModule = new GrRankingModule();
   });
 
   it('should create an instance', () => {
-    expect(grScoreboardModule).toBeTruthy();
+    expect(grRankingModule).toBeTruthy();
   });
 });

@@ -1,20 +1,20 @@
 <div class="content">
-  <h2>Scoreboards</h2>
+  <h2>Rankings</h2>
 </div>
 
-<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar scoreboard</span>
+<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar ranking</span>
 
 <div class="content" *ngIf="loading">
   Carregando...
 </div>
 
-<div class="content row" *ngFor="let scoreboard of scoreboards">
+<div class="content row" *ngFor="let ranking of rankings">
 
-  <span class="id"># {{ scoreboard.id }}</span>
+  <span class="id"># {{ ranking.id }}</span>
   <div class="input">
-    <span>Nome</span><input type="text" [(ngModel)]="scoreboard.name" (blur)="changed(scoreboard)" minlength="2"/>
+    <span>Nome</span><input type="text" [(ngModel)]="ranking.name" (blur)="changed(ranking)" minlength="2"/>
   </div>
-  <a [routerLink]="['..', scoreboard.id, 'detalhes']" ><i class="fa fa-search btn-info" title="Visualizar score"></i></a>
-  <i class="fa fa-trash btn-remove" (click)="delete(scoreboard)" title="Remover"></i>
+  <a [routerLink]="['..', ranking.id, 'detalhes']" *ngIf="ranking.id != undefined"><i class="fa fa-search btn-info" title="Visualizar ranking"></i></a>
+  <i class="fa fa-trash btn-remove" (click)="delete(ranking)" title="Remover" *ngIf="ranking.id != undefined"></i>
 
 </div>

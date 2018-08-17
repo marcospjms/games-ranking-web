@@ -16,16 +16,16 @@ export class RankingService {
     this.rankingsUrl = environment.apiUrl + 'rankings';
   }
 
-  public save(scoreboard: Ranking): Observable<Ranking> {
-    return this.httpClient.post<Ranking>(this.rankingsUrl, scoreboard);
+  public save(ranking: Ranking): Observable<Ranking> {
+    return this.httpClient.post<Ranking>(this.rankingsUrl, ranking);
   }
 
-  public update(scoreboard: Ranking): Observable<Ranking> {
-    return this.httpClient.put<Ranking>(this.rankingsUrl, scoreboard);
+  public update(ranking: Ranking): Observable<Ranking> {
+    return this.httpClient.put<Ranking>(this.rankingsUrl, ranking);
   }
 
-  public delete(scoreboard: Ranking): Observable<boolean> {
-    return this.httpClient.delete<boolean>(`${this.rankingsUrl}/${scoreboard.id}`);
+  public delete(ranking: Ranking): Observable<boolean> {
+    return this.httpClient.delete<boolean>(`${this.rankingsUrl}/${ranking.id}`);
   }
 
   public listAll(): Observable<Ranking[]> {
@@ -36,23 +36,23 @@ export class RankingService {
     return this.httpClient.get<Ranking>(`${this.rankingsUrl}/${id}`);
   }
 
-  public createScoreEntry(scoreboard: Ranking, player: Player): Observable<Ranking> {
-    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${scoreboard.id}/createRankingEntry/${player.id}`, scoreboard);
+  public createRankingEntry(ranking: Ranking, player: Player): Observable<Ranking> {
+    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${ranking.id}/createRankingEntry/${player.id}`, ranking);
   }
 
-  public incrementVictories(scoreboard: Ranking, player: Player): Observable<Ranking> {
-    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${scoreboard.id}/incrementVictories/${player.id}`, scoreboard);
+  public incrementVictories(ranking: Ranking, player: Player): Observable<Ranking> {
+    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${ranking.id}/incrementVictories/${player.id}`, ranking);
   }
 
-  public decreaseVictories(scoreboard: Ranking, player: Player): Observable<Ranking> {
-    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${scoreboard.id}/decreaseVictories/${player.id}`, scoreboard);
+  public decreaseVictories(ranking: Ranking, player: Player): Observable<Ranking> {
+    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${ranking.id}/decreaseVictories/${player.id}`, ranking);
   }
 
-  public incrementMatches(scoreboard: Ranking, player: Player): Observable<Ranking> {
-    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${scoreboard.id}/incrementMatches/${player.id}`, scoreboard);
+  public incrementMatches(ranking: Ranking, player: Player): Observable<Ranking> {
+    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${ranking.id}/incrementMatches/${player.id}`, ranking);
   }
 
-  public decreaseMatches(scoreboard: Ranking, player: Player): Observable<Ranking> {
-    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${scoreboard.id}/createScoreEntry/${player.id}`, scoreboard);
+  public decreaseMatches(ranking: Ranking, player: Player): Observable<Ranking> {
+    return this.httpClient.put<Ranking>(`${this.rankingsUrl}/${ranking.id}/decreaseMatches/${player.id}`, ranking);
   }
 }

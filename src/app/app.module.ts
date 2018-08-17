@@ -17,11 +17,11 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot([
       {
         path: '',
-        redirectTo: 'scoreboards',
+        redirectTo: 'rankings',
         pathMatch: 'full'
       },
       {
-        path: 'scoreboards',
+        path: 'rankings',
         loadChildren: () => GrRankingModule
       },
       {

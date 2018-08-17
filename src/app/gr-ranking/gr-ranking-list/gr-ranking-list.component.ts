@@ -10,40 +10,40 @@ import { RankingService } from '../shared/ranking.service';
 })
 export class GrRakingListComponent implements OnInit {
 
-  scoreboards: Ranking[];
+  rankings: Ranking[];
   loading = false;
 
-  constructor(private scoreboardService: RankingService) { }
+  constructor(private rankingService: RankingService) { }
 
   ngOnInit() {
     this.loading = true;
-    this.scoreboardService.listAll().subscribe(result => {
-      this.scoreboards = result;
+    this.rankingService.listAll().subscribe(result => {
+      this.rankings = result;
       this.loading = false;
     });
   }
 
   add() {
-    this.scoreboards.push(new Ranking());
+    this.rankings.push(new Ranking());
   }
 
-  changed(scoreb: Ranking) {
-    if (scoreb.name !== undefined && scoreb.name.trim() !== '') {
-      if (!scoreb.id) {
-        this.scoreboardService.save(scoreb).subscribe(newPlayer => scoreb.id = newPlayer.id);
+  changed(ranking: Ranking) {
+    if (ranking.name !== undefined && ranking.name.trim() !== '') {
+      if (!ranking.id) {
+        this.rankingService.save(ranking).subscribe(newPlayer => ranking.id = newPlayer.id);
       } else {
-        this.scoreboardService.update(scoreb).subscribe();
+        this.rankingService.update(ranking).subscribe();
       }
 
     }
   }
 
-  delete(scoreboard: Ranking, index: number) {
+  delete(ranking: Ranking, index: number) {
     if (!confirm('Tem certeza que deseja deletar?')) {
       return;
     }
-    this.scoreboardService.delete(scoreboard).subscribe(result => {
-      this.scoreboards.splice(index, 1);
+    this.rankingService.delete(ranking).subscribe(result => {
+      this.rankings.splice(index, 1);
     });
   }
 

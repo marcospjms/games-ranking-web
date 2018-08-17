@@ -1,8 +1,8 @@
 <div class="content">
-  <h2>Scoreboard - {{ scoreboard.name }}</h2>
+  <h2>Ranking - {{ ranking.name }}</h2>
 </div>
 
-<!--<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar scoreboard</span>-->
+<!--<span (click)="add()" class="btn-add"><i class="fa fa-plus-circle"></i> Adicionar ranking</span>-->
 
 <div class="content" *ngIf="loading">
   Carregando...
@@ -10,16 +10,16 @@
 
 <div class="content row">
 
-  <span class="id"># {{ scoreboard?.id }}</span>
+  <span class="id"># {{ ranking?.id }}</span>
   <div class="input">
-    <span>Nome</span><input type="text" [(ngModel)]="scoreboard.name" (ngModelChange)="changed(scoreboard)" minlength="2"/>
+    <span>Nome</span><input type="text" [(ngModel)]="ranking.name" (ngModelChange)="changed(ranking)" minlength="2"/>
   </div>
 
 </div>
 <span (click)="choosingPlayer = true" class="btn-add" *ngIf="!choosingPlayer"><i class="fa fa-plus-circle"></i> Adicionar jogador</span>
 <span (click)="choosingPlayer = false" class="btn-add" *ngIf="choosingPlayer"><i class="fa fa-caret-left"></i> Cancelar</span>
 <div class="content" *ngIf="!choosingPlayer">
-  <table class="scoreboard" *ngIf="scoreboard.rankingEntries != undefined && scoreboard.rankingEntries.length > 0">
+  <table class="ranking" *ngIf="ranking.rankingEntries != undefined && ranking.rankingEntries.length > 0">
     <thead>
       <tr>
         <th>Jogador</th>
@@ -28,24 +28,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let scoreEntry of scoreboard.rankingEntries; let i = index">
+      <tr *ngFor="let rankingEntry of ranking.rankingEntries; let i = index">
         <td>
-          {{ scoreEntry.player?.name }}
+          {{ rankingEntry.player?.name }}
         </td>
         <td>
-          <i class="fa fa-plus-circle" (click)="incrementVictories(scoreEntry, i)"></i>
-          <i class="fa fa-minus" (click)="decreaseVictories(scoreEntry, i)"></i>
-          {{scoreEntry.victories}}
+          <i class="fa fa-plus-circle" (click)="incrementVictories(rankingEntry, i)"></i>
+          <i class="fa fa-minus" (click)="decreaseVictories(rankingEntry, i)"></i>
+          {{rankingEntry.victories}}
         </td>
         <td>
-          <i class="fa fa-plus-circle" (click)="incrementMatches(scoreEntry, i)"></i>
-          <i class="fa fa-minus" (click)="decreaseMatches(scoreEntry, i)"></i>
-          {{ scoreEntry.matches}}
+          <i class="fa fa-plus-circle" (click)="incrementMatches(rankingEntry, i)"></i>
+          <i class="fa fa-minus" (click)="decreaseMatches(rankingEntry, i)"></i>
+          {{ rankingEntry.matches}}
         </td>
       </tr>
     </tbody>
   </table>
-  <span *ngIf="scoreboard.rankingEntries == undefined || scoreboard.rankingEntries.length == 0">
+  <span *ngIf="ranking.rankingEntries == undefined || ranking.rankingEntries.length == 0">
     Sem jogadores cadastrados
   </span>
 </div>
@@ -54,6 +54,10 @@
   <h3>Selecionar jogador</h3>
 </div>
 
-<div class="content choice" [hidden]="!choosingPlayer" *ngFor="let player of players" (click)="createScoreEntry(player)">
+<div class="content choice" [hidden]="!choosingPlayer || players == undefined || players.length === 0" *ngFor="let player of players" (click)="createRankingEntry(player)">
   <span>{{ player.name }}</span>
+</div>
+
+<div class="content" [hidden]="!choosingPlayer && players.length === 0">
+  Sem jogadores
 </div>
