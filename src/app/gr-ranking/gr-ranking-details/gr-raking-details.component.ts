@@ -64,21 +64,30 @@ export class GrRankingDetailsComponent implements OnInit {
 
   createRankingEntry(selectedPlayer: Player) {
     this.choosingPlayer = false;
-    this.rankingService.createRankingEntry(this.ranking, selectedPlayer).subscribe(ranking => this.ranking = ranking,
+    this.rankingService.createRankingEntry(this.ranking, selectedPlayer).subscribe(ranking => {
+        this.ranking = ranking;
+        this.sortEntries();
+      },
         error => {
       alert('Erro ao tentar realizar essa operação');
     });
   }
 
   deleteRankingEntry(rankingEntry: RankingEntry, i: number) {
-    this.rankingService.deleteRankingEntry(this.ranking, rankingEntry.player).subscribe(ranking => this.ranking = ranking,
+    this.rankingService.deleteRankingEntry(this.ranking, rankingEntry.player).subscribe(ranking => {
+        this.ranking = ranking;
+        this.sortEntries();
+      },
       error => {
         alert('Erro ao tentar realizar essa operação');
       });
   }
 
   public incrementVictories(rankingEntry: RankingEntry, i: number) {
-    this.rankingService.incrementVictories(this.ranking, rankingEntry.player).subscribe(ranking => this.ranking = ranking,
+    this.rankingService.incrementVictories(this.ranking, rankingEntry.player).subscribe(ranking => {
+        this.ranking = ranking;
+        this.sortEntries();
+      },
       error => {
         alert('Erro ao tentar realizar essa operação');
       });
@@ -88,27 +97,42 @@ export class GrRankingDetailsComponent implements OnInit {
     if (rankingEntry.victories === 0) {
       return;
     }
-    this.rankingService.decreaseVictories(this.ranking, rankingEntry.player).subscribe(ranking => this.ranking = ranking,
+    this.rankingService.decreaseVictories(this.ranking, rankingEntry.player).subscribe(ranking => {
+      this.ranking = ranking;
+      this.sortEntries();
+      },
       error => {
         alert('Erro ao tentar realizar essa operação');
       });
   }
 
   public incrementMatches(rankingEntry: RankingEntry, i: number) {
-    this.rankingService.incrementMatches(this.ranking, rankingEntry.player).subscribe(ranking => this.ranking = ranking,
-      error => {
-        alert('Erro ao tentar realizar essa operação');
-      });
+    this.rankingService.incrementMatches(this.ranking, rankingEntry.player).subscribe(ranking => {
+        this.ranking = ranking;
+        this.sortEntries();
+      },
+        error => {
+          alert('Erro ao tentar realizar essa operação');
+        });
   }
 
   public decreaseMatches(rankingEntry: RankingEntry, i: number) {
     if (rankingEntry.matches === 0) {
       return;
     }
-    this.rankingService.decreaseMatches(this.ranking, rankingEntry.player).subscribe(ranking => this.ranking = ranking,
-      error => {
-        alert('Erro ao tentar realizar essa operação');
-      });
+    this.rankingService.decreaseMatches(this.ranking, rankingEntry.player).subscribe(ranking => {
+        this.ranking = ranking;
+        this.sortEntries();
+      }
+      , error => {
+          alert('Erro ao tentar realizar essa operação');
+        });
+  }
+
+  sortEntries() {
+    this.ranking.rankingEntries.sort((e1: RankingEntry, e2: RankingEntry) => {
+      return e2.victories - e1.victories;
+    });
   }
 
 }
